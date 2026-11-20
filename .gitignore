@@ -1,0 +1,11 @@
+# 公开仓库默认只收录开源 skill 与仓库自身元数据。
+# 复盘、现场输出及其他项目材料保留在本机，不进入 Git。
+/*
+!.gitignore
+!README.md
+!LICENSE
+!LICENSE.*
+!.dsh/
+!.dsh/skills/
+!.dsh/skills/*/
+!.dsh/skills/*/**
