@@ -5,10 +5,9 @@
 !README.md
 !LICENSE
 !LICENSE.*
-!.agents/
-!.agents/skills/
-!.agents/skills/*/
-!.agents/skills/*/**
+!skills/
+!skills/*/
+!skills/*/**
 !tests/
 !tests/**
 
