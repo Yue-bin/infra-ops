@@ -99,7 +99,7 @@ sed -i '/^user-invocable: false$/d' "$tmp/infra-ops-core/SKILL.md"
 skills-ref validate "$tmp/infra-ops-core"
 ```
 
-这不等于宣称原始核心被官方校验器原生接受。[tests/scenarios.md](tests/scenarios.md) 进一步定义自动路由、反馈回退、核心去重、todo、长日志、证据、授权、Git 和交接场景。行为验收应在无生产副作用的模拟环境或夹具中进行；未实际执行的场景不得标记为通过。
+这不等于宣称原始核心被官方校验器原生接受。[tests/scenarios.md](tests/scenarios.md) 进一步定义自动路由、反馈回退、核心去重、todo、长日志、证据、授权、Git 和交接场景。行为验收应在无生产副作用的模拟环境或夹具中进行；未实际执行的场景不得标记为通过。2026-11-20 的结构、DSH 加载、代表性行为和敏感信息检查结果见 [验收记录](tests/validation-2026-11-20.md)。
 
 ## 范围与许可
 
