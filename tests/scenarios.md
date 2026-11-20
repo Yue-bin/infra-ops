@@ -8,6 +8,8 @@
 
 ## A. 结构与真实加载
 
+> A02–A05 为 DSH 客户端专用场景，对应其技能发现与调用机制；其他客户端按自身机制等效验收，实测结果记录于 `tests/validation-*.md`。
+
 | ID | 操作 | 通过条件 | 失败信号 |
 |---|---|---|---|
 | A01 | 对七个普通 bundle（含 `infra-init`）运行 `skills-ref validate` | 名称、description、目录和 frontmatter 均符合标准 | 任一普通 bundle 被跳过或报错 |

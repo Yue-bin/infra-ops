@@ -87,7 +87,7 @@ tests/scenarios.md
 - **DSH 用户级安装**：放入 `~/.dsh/skills/` 或 `~/.agents/skills/`。
 - **其他 Agent Skills 客户端**：按客户端的技能目录约定安装同一组标准 `SKILL.md` bundle。
 
-DSH 0.2.2-rc.1 支持直属 `SKILL.md` 热更新；安装或修改后通过实际目录与调用结果确认，不需要用重启代替验证。
+DSH 支持直属 `SKILL.md` 热更新（以所装版本文档为准）；安装或修改后通过实际目录与调用结果确认，不需要用重启代替验证。
 
 ## 校验与行为验收
 
