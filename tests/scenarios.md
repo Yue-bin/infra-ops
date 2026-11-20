@@ -10,11 +10,12 @@
 
 | ID | 操作 | 通过条件 | 失败信号 |
 |---|---|---|---|
-| A01 | 对七个 bundle 运行 `skills-ref validate` | 名称、description、目录和 frontmatter 均符合标准 | 任一 bundle 被跳过或报错 |
-| A02 | 在 DSH 项目根观察模型 skill 目录 | 七个名称均出现，description 对应各自职责 | 缺项、名称冲突或 description 被截断后职责不清 |
-| A03 | 检查用户入口 | `/infra-ops` 与五个专用入口可见，`infra-ops-core` 不作为用户入口 | 核心出现在用户菜单，或任一专用入口不可调用 |
-| A04 | 分别用模型 `skill` 工具加载七个名称 | 每个正文均可读取，resourceBase 指向各自目录 | 核心不可模型调用、路径错误或引用基目录错位 |
-| A05 | 从核心按需读取三份 references | 路径均相对 `infra-ops-core/` 解析，内容只在对应分支需要时加载 | 相对包装目录查找、启动时无条件加载全部资源 |
+| A01 | 对六个普通 bundle 运行 `skills-ref validate` | 名称、description、目录和 frontmatter 均符合标准 | 任一普通 bundle 被跳过或报错 |
+| A02 | 原始核心运行官方校验，再在临时副本中仅移除 `user-invocable: false` 后复验 | 原始文件只因该 DSH 扩展被拒绝，移除后其余标准字段通过；DSH 另验 M-only | 把原始失败隐瞒为通过，或移除扩展后仍有其他标准错误 |
+| A03 | 在 DSH 项目根观察模型 skill 目录 | 七个名称均出现，description 对应各自职责 | 缺项、名称冲突或 description 被截断后职责不清 |
+| A04 | 检查用户入口 | `/infra-ops` 与五个专用入口可见，`infra-ops-core` 不作为用户入口 | 核心出现在用户菜单，或任一专用入口不可调用 |
+| A05 | 分别用模型 `skill` 工具加载七个名称 | 每个正文均可读取，resourceBase 指向各自目录 | 核心不可模型调用、路径错误或引用基目录错位 |
+| A06 | 从核心按需读取三份 references | 路径均相对 `infra-ops-core/` 解析，内容只在对应分支需要时加载 | 相对包装目录查找、启动时无条件加载全部资源 |
 
 ## B. 自动 / 混合编排
 

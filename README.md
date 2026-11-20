@@ -82,15 +82,24 @@ DSH 0.2.2-rc.1 支持直属 `SKILL.md` 热更新；安装或修改后通过实�
 
 ## 校验与行为验收
 
-使用 [Agent Skills specification](https://agentskills.io/specification) 的参考校验器检查每个 bundle：
+六个普通 bundle 直接使用 [Agent Skills specification](https://agentskills.io/specification) 的参考校验器：
 
 ```bash
-for skill in skills/infra-*; do
+for skill in skills/infra-{apply,design,diagnose,handoff,ops,verify}; do
   skills-ref validate "$skill"
 done
 ```
 
-[tests/scenarios.md](tests/scenarios.md) 定义自动路由、反馈回退、核心去重、todo、长日志、证据、授权、Git 和交接场景。行为验收应在无生产副作用的模拟环境或夹具中进行；未实际执行的场景不得标记为通过。
+`infra-ops-core` 使用 DSH 的 `user-invocable: false` 扩展来实现“模型可调用、用户不直接调用”。官方校验器会拒绝这个厂商扩展字段；在临时副本中只移除该行，可校验其余标准字段，实际 M-only 行为则由 DSH 加载验收确认：
+
+```bash
+tmp="$(mktemp -d)"
+cp -R skills/infra-ops-core "$tmp/"
+sed -i '/^user-invocable: false$/d' "$tmp/infra-ops-core/SKILL.md"
+skills-ref validate "$tmp/infra-ops-core"
+```
+
+这不等于宣称原始核心被官方校验器原生接受。[tests/scenarios.md](tests/scenarios.md) 进一步定义自动路由、反馈回退、核心去重、todo、长日志、证据、授权、Git 和交接场景。行为验收应在无生产副作用的模拟环境或夹具中进行；未实际执行的场景不得标记为通过。
 
 ## 范围与许可
 
