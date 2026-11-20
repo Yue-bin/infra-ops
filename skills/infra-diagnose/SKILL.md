@@ -3,7 +3,7 @@ name: infra-diagnose
 description: 生产故障、服务异常、性能下降、报错、数据不一致和疑似数据丢失诊断。用于先划统计边界、验证检查手段，再以独立证据动态归因；不因找到疑似原因就自动实施修复。
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # 证据驱动的故障诊断

@@ -3,7 +3,7 @@ name: infra-apply
 description: 安装部署、初始配置、升级迁移和生产变更实施。用于把已确认目标转成精确授权计划，按风险由 agent 执行可恢复写或交由人执行高风险步骤，并逐步观测后置状态。
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # 装维与生产变更实施

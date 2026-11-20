@@ -3,7 +3,7 @@ name: infra-design
 description: 装维调研、基础设施规划、上线前方案和拓扑/容量/版本选型。用于从现状、目标与约束形成可实施、可恢复、可验收的设计；关键决策留人确认，不直接实施目标环境写操作。
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # 装维与变更设计

@@ -3,7 +3,7 @@ name: infra-ops-core
 description: infra-ops 系列入口共享的接态、todo、证据、授权、可恢复、上下文卫生、状态与 Git 约定；供生命周期入口或其他基础设施装维技能组合时加载，不承担生命周期路由。
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 user-invocable: false
 ---
 

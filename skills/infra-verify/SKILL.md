@@ -3,7 +3,7 @@ name: infra-verify
 description: 装维验收、生产巡检、变更后验证、交付前检查和独立复核。用于从消费方视角核对真实结果、判据和覆盖范围，明确通过、失败与未验证项，不用命令退出码代替生效证明。
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # 消费方视角的验证与验收

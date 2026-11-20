@@ -3,7 +3,7 @@ name: infra-ops
 description: 跨阶段装维与生产运维、目标尚难分类或需要自动/混合模式的任务。按需动态组合 infra-init、infra-design、infra-apply、infra-diagnose、infra-verify、infra-handoff，依据实况回退与停止；自动加载不扩大方案决策或写授权。
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # infra-ops 自动 / 混合编排
