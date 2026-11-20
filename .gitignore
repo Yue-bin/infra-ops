@@ -5,10 +5,12 @@
 !README.md
 !LICENSE
 !LICENSE.*
-!.dsh/
-!.dsh/skills/
-!.dsh/skills/*/
-!.dsh/skills/*/**
+!.agents/
+!.agents/skills/
+!.agents/skills/*/
+!.agents/skills/*/**
+!tests/
+!tests/**
 
 # 本地设计检查点及其历史归档只属于当前工作记忆。
 important_view*.md
