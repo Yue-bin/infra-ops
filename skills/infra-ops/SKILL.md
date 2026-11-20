@@ -1,6 +1,6 @@
 ---
 name: infra-ops
-description: 跨阶段装维与生产运维、目标尚难分类或需要自动/混合模式的任务。按需动态组合 infra-design、infra-apply、infra-diagnose、infra-verify、infra-handoff，依据实况回退与停止；自动加载不扩大方案决策或写授权。
+description: 跨阶段装维与生产运维、目标尚难分类或需要自动/混合模式的任务。按需动态组合 infra-init、infra-design、infra-apply、infra-diagnose、infra-verify、infra-handoff，依据实况回退与停止；自动加载不扩大方案决策或写授权。
 license: MIT
 metadata:
   version: "0.1.0"
@@ -16,6 +16,7 @@ metadata:
 
 | 当前主要问题 | 调用的 skill |
 |---|---|
+| 工作区尚未初始化：缺连接方式、环境基线或目录约定 | `infra-init` |
 | 现状、目标、约束或方案取舍尚未收敛 | `infra-design` |
 | 出现异常，原因或检查判据仍不可靠 | `infra-diagnose` |
 | 已确认方案需要安装、迁移、升级或变更实施 | `infra-apply` |
@@ -28,6 +29,7 @@ metadata:
 
 每个阶段完成后，对照用户目标与实际证据重新选择：
 
+- 工作区缺接态必需信息（连接方式、环境基线、目录约定）且目标需要落地工作时，先建议 `infra-init`；已有约定的工作区不重复初始化，一次性只读问答不触发。
 - 设计已确认且用户要求交付，才进入实施；关键取舍未决时继续设计或请人决策。
 - 实施出现意外，先局部诊断；恢复或重新授权后再决定是否继续实施。
 - 验证失败时保留现场并诊断，不因已有实施计划就跳过归因。
