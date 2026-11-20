@@ -2,13 +2,14 @@
 
 一套面向**基础设施装维与生产运维全生命周期**的 Agent Skills。
 
-它不是某个产品的安装手册，也不是要求从头走到尾的线性 wizard。套件把证据、授权、可恢复、todo、上下文卫生、状态与 Git 放在同一个共享核心中，再由不同入口塑造设计、实施、诊断、验证和交接任务。
+它不是某个产品的安装手册，也不是要求从头走到尾的线性 wizard。套件把证据、授权、可恢复、todo、上下文卫生、状态与 Git 放在同一个共享核心中，再由不同入口塑造初始化、设计、实施、诊断、验证和交接任务。
 
 ## 入口
 
 | Skill | 用途 |
 |---|---|
 | `/infra-ops` | 自动 / 混合模式：持有用户目标，按实况动态组合一个或多个专用入口，可回退，目标达成即停止 |
+| `/infra-init` | 新工作区初始化：接机器连接、采最小环境画像、建立目录约定与项目 `AGENTS.md`、状态基线和本地 Git 首提交 |
 | `/infra-design` | 装维调研、基础设施规划、方案选型与关键决策确认 |
 | `/infra-apply` | 安装部署、升级迁移和生产变更的精确授权实施 |
 | `/infra-diagnose` | 故障、异常、性能与数据一致性问题的证据驱动诊断 |
@@ -29,6 +30,10 @@
 只需要一个阶段时直接使用专用入口：
 
 ```text
+/infra-init 这是刚建好的空工作区。机器连接方式：host-a（密钥）、host-b（密码，稍后我配到连接工具里）；先把工作区初始化起来，计划给我看。
+```
+
+```text
 /infra-diagnose 只做只读诊断。检查工具返回空列表，先证明这个判据有效，再解释原因。
 ```
 
@@ -47,6 +52,7 @@
 - **验收**：读取消费方和目标资源的真实值，不把退出码当作生效证明。
 - **上下文**：长日志落盘检索、长测量后台运行，子代理返回结论和证据位置。
 - **状态与 Git**：项目约定优先，默认管理状态与决策最小集；本地原子提交与远端操作分开授权。
+- **工作区骨架**：空白工作区由 `infra-init` 提供四容器默认骨架，项目约定可覆盖，存量只映射不搬迁。
 
 ## 目录
 
@@ -58,6 +64,9 @@ skills/
 │       ├── evidence.md
 │       ├── change-safety.md
 │       └── state-and-git.md
+├── infra-init/
+│   ├── SKILL.md
+│   └── references/skeleton.md
 ├── infra-ops/SKILL.md
 ├── infra-design/SKILL.md
 ├── infra-apply/SKILL.md
@@ -71,10 +80,10 @@ tests/scenarios.md
 
 ## 安装
 
-本仓库以 `skills/` 保存开源源码；安装时再将 bundle 放入 DSH 的发现目录。复制时保留七个平级 skill 目录，尤其不要把 `infra-ops-core` 嵌套进其他入口，否则 DSH 不会发现它。
+本仓库以 `skills/` 保存开源源码；安装时再将 bundle 放入 DSH 的发现目录。复制时保留八个平级 skill 目录，尤其不要把 `infra-ops-core` 嵌套进其他入口，否则 DSH 不会发现它。
 
 - **源码校验**：直接对根目录 `skills/infra-*` 下的 bundle 运行校验器。
-- **项目级安装**：将 `skills/` 下的七个目录放入目标项目的 `.agents/skills/`。
+- **项目级安装**：将 `skills/` 下的八个目录放入目标项目的 `.agents/skills/`。
 - **DSH 用户级安装**：放入 `~/.dsh/skills/` 或 `~/.agents/skills/`。
 - **其他 Agent Skills 客户端**：按客户端的技能目录约定安装同一组标准 `SKILL.md` bundle。
 
@@ -82,10 +91,10 @@ DSH 0.2.2-rc.1 支持直属 `SKILL.md` 热更新；安装或修改后通过实�
 
 ## 校验与行为验收
 
-六个普通 bundle 直接使用 [Agent Skills specification](https://agentskills.io/specification) 的参考校验器：
+七个普通 bundle 直接使用 [Agent Skills specification](https://agentskills.io/specification) 的参考校验器：
 
 ```bash
-for skill in skills/infra-{apply,design,diagnose,handoff,ops,verify}; do
+for skill in skills/infra-{init,apply,design,diagnose,handoff,ops,verify}; do
   skills-ref validate "$skill"
 done
 ```
@@ -99,10 +108,10 @@ sed -i '/^user-invocable: false$/d' "$tmp/infra-ops-core/SKILL.md"
 skills-ref validate "$tmp/infra-ops-core"
 ```
 
-这不等于宣称原始核心被官方校验器原生接受。[tests/scenarios.md](tests/scenarios.md) 进一步定义自动路由、反馈回退、核心去重、todo、长日志、证据、授权、Git 和交接场景。行为验收应在无生产副作用的模拟环境或夹具中进行；未实际执行的场景不得标记为通过。2026-11-20 的结构、DSH 加载、代表性行为和敏感信息检查结果见 [验收记录](tests/validation-2026-11-20.md)。
+这不等于宣称原始核心被官方校验器原生接受。[tests/scenarios.md](tests/scenarios.md) 进一步定义自动路由、反馈回退、核心去重、todo、长日志、证据、授权、Git、初始化和交接场景。行为验收应在无生产副作用的模拟环境或夹具中进行；未实际执行的场景不得标记为通过。结构、DSH 加载、代表性行为和敏感信息检查结果见 [0.1.0 验收记录](tests/validation-2026-11-20.md)与 [0.2.0 验收记录](tests/validation-2026-11-21.md)。
 
 ## 范围与许可
 
-当前版本：`0.1.0`。本仓库不包含原始复盘、现场日志或凭据，只保留通用规则和匿名小例。后续真实装维项目用于继续检验任务边界与可恢复性，不预先视作已通过实战验收。
+当前版本：`0.2.0`。本仓库不包含原始复盘、现场日志或凭据，只保留通用规则和匿名小例。后续真实装维项目用于继续检验任务边界与可恢复性，不预先视作已通过实战验收。
 
 采用 [MIT License](LICENSE)，版权署名 `2026 Yue-bin`。
