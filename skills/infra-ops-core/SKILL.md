@@ -3,7 +3,7 @@ name: infra-ops-core
 description: infra-ops 系列入口共享的接态、todo、证据、授权、可恢复、上下文卫生、状态与 Git 约定；供生命周期入口或其他基础设施装维技能组合时加载，不承担生命周期路由。
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 user-invocable: false
 ---
 
@@ -55,6 +55,7 @@ agent 可自主调查、计算和推荐；用户确认目标、约束及高影�
 - agent 只执行低爆炸半径且有备份或等价保障、明确逆操作和后置验证的写。
 - 删除、批量、权限、共享基础设施、不可逆或恢复依据不足的操作由人执行；agent 提供命令与只读复核。
 - 每步后读取消费方或目标资源的真实状态；退出码只说明命令结束，不说明目标已生效。
+- 改变目标环境状态、长时交互式或被引为证据的命令必须录制过程；判定、Linux 语法、证据索引与入库分层见 [references/recording.md](references/recording.md)。录制不可用时停在计划门，不静默降级。
 
 ## 5. 持续工作留下状态与决策
 
