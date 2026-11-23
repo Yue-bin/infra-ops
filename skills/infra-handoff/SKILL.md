@@ -3,7 +3,7 @@ name: infra-handoff
 description: 装维交付、运维窗口收尾、状态收敛、决策记录、会话迁移和接手准备。用于统一当前状态、关键决策、风险、未决 todo 与证据位置，并按授权完成本地 Git 记录，让新读者无需聊天记忆即可继续。
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # 可行动的交接与状态收敛
